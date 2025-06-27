@@ -272,6 +272,25 @@
     [self removeMapForView:view];
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldBeginMultipleSelectionInteractionAtIndexPath:(NSIndexPath *)indexPath {
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;    
+    if (@available(iOS 13.0, *)) {
+        if ([collectionViewDelegate respondsToSelector:@selector(collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:)]) {
+            return [collectionViewDelegate collectionView:collectionView shouldBeginMultipleSelectionInteractionAtIndexPath:indexPath];
+        }
+    }
+    return NO;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didBeginMultipleSelectionInteractionAtIndexPath:(NSIndexPath *)indexPath {
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
+    if (@available(iOS 13.0, *)) {
+        if ([collectionViewDelegate respondsToSelector:@selector(collectionView:didBeginMultipleSelectionInteractionAtIndexPath:)]) {
+            [collectionViewDelegate collectionView:collectionView didBeginMultipleSelectionInteractionAtIndexPath:indexPath];
+        }
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     // forward this method to the delegate b/c this implementation will steal the message from the proxy
     id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
