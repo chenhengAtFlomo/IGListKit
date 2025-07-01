@@ -291,6 +291,15 @@
     }
 }
 
+- (void)collectionViewDidEndMultipleSelectionInteraction:(UICollectionView *)collectionView {
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
+    if (@available(iOS 13.0, *)) {
+        if ([collectionViewDelegate respondsToSelector:@selector(collectionViewDidEndMultipleSelectionInteraction:)]) {
+            [collectionViewDelegate collectionViewDidEndMultipleSelectionInteraction: collectionView];
+        }
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     // forward this method to the delegate b/c this implementation will steal the message from the proxy
     id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;

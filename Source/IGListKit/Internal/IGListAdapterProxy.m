@@ -35,6 +35,7 @@ static BOOL isInterceptedSelector(SEL sel) {
             sel == @selector(collectionView:didDeselectItemAtIndexPath:) ||
             sel == @selector(collectionView:didHighlightItemAtIndexPath:) ||
             sel == @selector(collectionView:didBeginMultipleSelectionInteractionAtIndexPath:) ||
+            sel == @selector(collectionViewDidEndMultipleSelectionInteraction:) ||
             sel == @selector(collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:) ||
             sel == @selector(collectionView:didUnhighlightItemAtIndexPath:) ||
             sel == @selector(indexPathForPreferredFocusedViewInCollectionView:) ||
